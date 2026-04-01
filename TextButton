@@ -1,0 +1,22 @@
+local button = script.Parent
+local state = false
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local remote = ReplicatedStorage:WaitForChild("ToggleAura")
+
+button.Text = "Aura: OFF"
+button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+
+button.MouseButton1Click:Connect(function()
+	state = not state
+	
+	if state then
+		button.Text = "Aura: ON"
+		button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	else
+		button.Text = "Aura: OFF"
+		button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	end
+	
+	remote:FireServer(state)
+end)
